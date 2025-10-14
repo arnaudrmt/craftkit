@@ -1,0 +1,7 @@
+name: Abstractify
+main: fr.arnaud.abstractify.Abstractify
+version: 1.0-SNAPSHOT
+priority: HIGHEST
+api-version: 1.8
+depend:
+  - ProtocolLib
