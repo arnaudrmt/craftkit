@@ -1,5 +1,0 @@
-name: CraftKit
-main: fr.arnaud.craftkit.CraftKit
-version: 1.0-SNAPSHOT
-priority: HIGHEST
-api-version: 1.8
