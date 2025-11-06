@@ -20,10 +20,9 @@ This library is built on a simple philosophy: **No dependencies. No complex setu
 
 This is not a traditional library you add as a dependency. It's a code repository designed for you to take what you need.
 
-1.  Navigate to the `src` folder in this repository.
-2.  Find the folder that matches the Minecraft version you are developing for (e.g., `1.8-1.12`).
-3.  Copy the `.java` file(s) for the utilities you want into your own project's source folder.
-4.  **Important:** Most utilities depend on `ReflectionUtils.java`, located in the `common/util` folder. Make sure to copy it into your project as well!
+1.  Find the folder that matches the Minecraft version you are developing for (e.g., `1.8-1.12`).
+2.  Copy the `.java` file(s) for the utilities you want into your own project's source folder.
+3.  **Important:** Most utilities depend on `ReflectionUtils.java`, located in the `common/util` folder. Make sure to copy it into your project as well!
 
 ---
 
