@@ -20,7 +20,7 @@ This library is built on a simple philosophy: **No dependencies. No complex setu
 
 This is not a traditional library you add as a dependency. It's a code repository designed for you to take what you need.
 
-1.  Find the folder that matches the Minecraft version you are developing for (e.g., `1.8-1.12`).
+1.  Find the folder that matches the Minecraft version you are developing for (e.g., `1.9-1.12`).
 2.  Copy the `.java` file(s) for the utilities you want into your own project's source folder.
 3.  **Important:** Most utilities depend on `ReflectionUtils.java`, located in the `common/util` folder. Make sure to copy it into your project as well!
 
@@ -47,25 +47,25 @@ Forget Netty handlers and NMS containers. Just create a new prompt and provide a
 ```java
 // --- Chat Input ---
 // Asks the player to type "confirm" in chat to proceed.
-new ChatPrompt(player, "§cAre you sure? Type 'confirm' to proceed.", (p, message) -> {
+new ChatPrompt(player, "§cAre you sure? Type 'confirm' to proceed.", (message) -> {
         if (message.equalsIgnoreCase("confirm")) {
-        p.sendMessage("§aAction confirmed!");
+        player.sendMessage("§aAction confirmed!");
         // Proceed with the action...
         } else {
-                p.sendMessage("§cAction cancelled.");
+                player.sendMessage("§cAction cancelled.");
         }
 });
 
 // --- Anvil Input ---
 // Prompts the player to enter a name and sends it back to them.
-new AnvilPrompt(player, "Enter your name", (p, text) -> {
-        p.sendMessage("§aYour name is: §e" + text);
+new AnvilPrompt(player, "Enter your name", (text) -> {
+        player.sendMessage("§aYour name is: §e" + text);
 });
 
 // --- Sign Input ---
 // Prompts the player to enter four lines of text for a search.
-new SignPrompt(player, (p, lines, combined) -> {
-        p.sendMessage("§aYou searched for: §e" + combined);
+new SignPrompt(player, (lines, combined) -> {
+        player.sendMessage("§aYou searched for: §e" + combined);
 });
 ```
 
@@ -172,7 +172,7 @@ CraftKit is designed to be simple on the outside but powerful on the inside. It 
 ## Features
 
 *   **Zero Dependencies:** Designed to be completely standalone. Just copy and paste the code.
-*   **Multi-Version Support:** Core utilities are designed to work on Spigot 1.8 through 1.21+.
+*   **Multi-Version Support:** Core utilities are designed to work on Spigot 1.8 through 1.16+.
 *   **Player Input Prompts:**
     *   **`AnvilPrompt`:** For single-line text input.
     *   **`SignPrompt`:** For multi-line text input.

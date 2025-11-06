@@ -130,4 +130,21 @@ public final class ReflectionUtils {
             throw new RuntimeException("Error setting field " + fieldName + " on " + instance.getClass().getName(), e);
         }
     }
+
+    /**
+     * Reads the value of a static field by name from a class.
+     *
+     * @param clazz     The class containing the static field.
+     * @param fieldName The name of the static field to read.
+     * @return The value of the static field.
+     */
+    public static Object getStaticFieldValue(Class<?> clazz, String fieldName) {
+        try {
+            Field field = clazz.getDeclaredField(fieldName);
+            field.setAccessible(true);
+            return field.get(null);
+        } catch (Exception e) {
+            throw new RuntimeException("Error reading static field " + fieldName + " from " + clazz.getName(), e);
+        }
+    }
 }
