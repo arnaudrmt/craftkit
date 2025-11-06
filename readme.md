@@ -2,8 +2,8 @@
 
 ![CraftKit Banner](https://placehold.co/800x200/3498DB/FFFFFF?text=CraftKit&font=montserrat)
 
-![Java](https://img.shields.io/badge/Java-8-blue?logo=openjdk&logoColor=white)
-![Spigot API](https://img.shields.io/badge/Spigot-1.8%20-orange?logo=spigotmc)
+![Java](https://img.shields.io/badge/Java-8+-blue?logo=openjdk&logoColor=white)
+![Spigot API](https://img.shields.io/badge/Spigot-1.8--1.16-orange?logo=spigotmc)
 ![License](https://img.shields.io/badge/License-MIT-yellow?logo=opensourceinitiative)
 
 </div>
