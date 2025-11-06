@@ -15,7 +15,6 @@ repositories {
 dependencies {
 
     compileOnly("org.spigotmc:spigot:1.8.8-R0.1-SNAPSHOT")
-    compileOnly("com.comphenix.protocol:ProtocolLib:5.3.0")
 
     testImplementation(platform("org.junit:junit-bom:5.10.0"))
     testImplementation("org.junit.jupiter:junit-jupiter")
@@ -43,7 +42,7 @@ tasks.register<Copy>("copyToServer") {
 
     dependsOn(tasks.jar)
 
-    val serverPluginFolder = file("/Users/arnaud/Desktop/Documents/Developpment/Projects/Plugins/Test Servers/1.8.8/plugins");
+    val serverPluginFolder = file("/Users/arnaud/Desktop/Documents/Developpment/Serveurs Minecraft/1.8.8/plugins");
 
     from(tasks.jar.get().archiveFile)
     into(serverPluginFolder)
