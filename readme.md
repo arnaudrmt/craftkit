@@ -10,7 +10,7 @@
 
 > ⚠️ **Version Compatibility Notice**
 >
-> Please be aware that CraftKit has currently only been tested and is guaranteed to work on **Spigot 1.8.x**. Support for newer versions is a top priority and will be added very soon!
+> Please be aware that CraftKit has currently only been tested and is guaranteed to work on **Spigot 1.8.x** through **Spigot 1.16.x**. Support for newer versions is a top priority and will be added very soon!
 
 This library is built on a simple philosophy: **No dependencies. No complex setup. Just copy the code you need.** Each utility is self-contained and provides a clean, modern API for handling traditionally difficult tasks like player input, custom items, and interactive messages.
 
@@ -172,7 +172,7 @@ CraftKit is designed to be simple on the outside but powerful on the inside. It 
 ## Features
 
 *   **Zero Dependencies:** Designed to be completely standalone. Just copy and paste the code.
-*   **Multi-Version Support:** Core utilities are designed to work on Spigot 1.8 through 1.16+.
+*   **Multi-Version Support:** Core utilities are designed to work on Spigot 1.8 through 1.16.
 *   **Player Input Prompts:**
     *   **`AnvilPrompt`:** For single-line text input.
     *   **`SignPrompt`:** For multi-line text input.
