@@ -2,8 +2,8 @@ package fr.arnaud.craftkit.api;
 
 import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.properties.Property;
+import net.minecraft.util.datafix.DataFixTypes;
 import org.bukkit.Material;
-import org.bukkit.SkullType;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemFlag;
@@ -52,7 +52,7 @@ public class ItemBuilder {
     }
 
     public ItemBuilder setUnbreakable() {
-        (isSkull ? skullMeta : itemMeta).spigot().setUnbreakable(true);
+        (isSkull ? skullMeta : itemMeta).setUnbreakable(true);
         return this;
     }
 
@@ -80,8 +80,8 @@ public class ItemBuilder {
 
     public ItemBuilder setOwner(Player owner) {
         if (isSkull) {
-            itemStack.setDurability((short) SkullType.PLAYER.ordinal());
-            skullMeta.setOwner(owner.getName());
+            itemStack.setDurability((short) DataFixTypes.PLAYER.ordinal());
+            skullMeta.setOwningPlayer(owner);
         }
         return this;
     }
@@ -99,7 +99,7 @@ public class ItemBuilder {
     public ItemBuilder setTexture(String texture) {
         if (!isSkull) return this;
 
-        itemStack.setDurability((short) SkullType.PLAYER.ordinal());
+        itemStack.setDurability((short) DataFixTypes.PLAYER.ordinal());
 
         GameProfile profile = new GameProfile(UUID.randomUUID(), null);
         profile.getProperties().put("textures", new Property("textures", texture));

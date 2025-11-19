@@ -122,7 +122,7 @@ public class SignPrompt implements Listener {
                     // Defer the callback and cleanup to the main thread to ensure thread safety
                     Bukkit.getScheduler().runTask(JavaPlugin.getProvidingPlugin(this.getClass()), () -> {
                         // Execute the user-defined callback with the results
-                        callback.onSignUpdate(player, lines, String.join("", lines));
+                        callback.onSignUpdate(lines, String.join("", lines));
 
                         // Send a packet to change the fake sign back to air, cleaning up the client's view
                         try {
@@ -210,10 +210,9 @@ public class SignPrompt implements Listener {
         /**
          * Called when the player submits their sign input.
          *
-         * @param player        The player who filled the sign.
          * @param lines         An array of the 4 lines of text entered.
          * @param combinedLines All lines concatenated with no separator.
          */
-        void onSignUpdate(Player player, String[] lines, String combinedLines);
+        void onSignUpdate(String[] lines, String combinedLines);
     }
 }

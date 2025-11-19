@@ -3,14 +3,18 @@
 ![CraftKit Banner](https://placehold.co/800x200/3498DB/FFFFFF?text=CraftKit&font=montserrat)
 
 ![Java](https://img.shields.io/badge/Java-8+-blue?logo=openjdk&logoColor=white)
-![Spigot API](https://img.shields.io/badge/Spigot-1.8--1.16-orange?logo=spigotmc)
+![Spigot API](https://img.shields.io/badge/Spigot-1.8%20-->%201.21.10-orange?logo=spigotmc)
 ![License](https://img.shields.io/badge/License-MIT-yellow?logo=opensourceinitiative)
 
 </div>
 
-> ⚠️ **Version Compatibility Notice**
+> ⚠️ **Version Compatibility & Build Notice**
 >
-> Please be aware that CraftKit has currently only been tested and is guaranteed to work on **Spigot 1.8.x** through **Spigot 1.16.x**. Support for newer versions is a top priority and will be added very soon!
+> CraftKit now fully supports **Spigot 1.8.x** through **1.21.x**!
+>
+> **For 1.17+ Developers:** This library utilizes **Mojang Mappings** via [Paperweight](https://github.com/PaperMC/paperweight) for versions **1.17 through 1.21+**. Ensure your project is configured to handle remapped dependencies.
+>
+> **Testing Policy:** Please note that compatibility is strictly tested on the **latest patch release** of each major version (e.g., **1.8.8**, **1.12.2**, **1.13.2**, **1.16.5**, **1.19.4**). While intermediate versions likely work, they are not guaranteed. If you encounter issues on a specific sub-version, please **report it** or feel free to **contribute** a fix!
 
 This library is built on a simple philosophy: **No dependencies. No complex setup. Just copy the code you need.** Each utility is self-contained and provides a clean, modern API for handling traditionally difficult tasks like player input, custom items, and interactive messages.
 
@@ -40,7 +44,7 @@ CraftKit provides a range of easy-to-use tools. Here’s a look at what you can 
 
 ## API Usage Examples
 
-### `AnvilPrompt` & `SignPrompt` — Capturing Player Input
+### `ChatPrompt`, `AnvilPrompt` & `SignPrompt` — Capturing Player Input
 
 Forget Netty handlers and NMS containers. Just create a new prompt and provide a callback for when the player is done.
 
@@ -83,7 +87,6 @@ ItemStack profileItem = new ItemBuilder(Material.SKULL_ITEM, "§6My Profile")
         "",
         "§eClick to view your stats!"
     )
-    .addFlag(ItemFlag.HIDE_ATTRIBUTES)
     .build();
 
 // Create an enchanted "Excalibur" sword
@@ -91,6 +94,7 @@ ItemStack excalibur = new ItemBuilder(Material.DIAMOND_SWORD, "§bExcalibur")
     .setUnbreakable()
     .addEnchantment(Enchantment.DAMAGE_ALL, 5)
     .addEnchantment(Enchantment.FIRE_ASPECT, 2)
+    .addFlag(ItemFlag.HIDE_ATTRIBUTES)
     .build();
 ```
 
@@ -109,7 +113,7 @@ new MessageBuilder()
         .addInteractiveText(
             "§eClick here to visit our website!",   // Display text
             ClickEvent.Action.OPEN_URL,             // Action on click
-            "https://www.spigotmc.org",              // Value for the action
+            "https://www.spigotmc.org",             // Value for the action
             "§aOpens spigotmc.org"                  // Hover text
         )
     .send(player);
@@ -172,7 +176,7 @@ CraftKit is designed to be simple on the outside but powerful on the inside. It 
 ## Features
 
 *   **Zero Dependencies:** Designed to be completely standalone. Just copy and paste the code.
-*   **Multi-Version Support:** Core utilities are designed to work on Spigot 1.8 through 1.16.
+*   **Multi-Version Support:** Core utilities are designed to work on Spigot 1.8 through 1.21.
 *   **Player Input Prompts:**
     *   **`AnvilPrompt`:** For single-line text input.
     *   **`SignPrompt`:** For multi-line text input.

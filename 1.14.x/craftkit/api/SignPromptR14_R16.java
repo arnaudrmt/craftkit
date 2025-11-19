@@ -17,7 +17,7 @@ import java.lang.reflect.Method;
 import java.util.UUID;
 
 /**
- * SignPrompt for Minecraft 1.14.x
+ * SignPrompt for Minecraft 1.14.x -> 1.16.x
  * Opens a virtual sign input GUI for a player and captures their text input using reflection.
  */
 public class SignPrompt implements Listener {

@@ -52,7 +52,7 @@ public class ItemBuilder {
     }
 
     public ItemBuilder setUnbreakable() {
-        (isSkull ? skullMeta : itemMeta).spigot().setUnbreakable(true);
+        (isSkull ? skullMeta : itemMeta).setUnbreakable(true);
         return this;
     }
 

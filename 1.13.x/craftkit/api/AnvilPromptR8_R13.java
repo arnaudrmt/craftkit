@@ -259,7 +259,6 @@ public class AnvilPrompt implements Listener {
         /**
          * Called when the player submits their text input.
          *
-         * @param player The player who submitted the input.
          * @param text   The text that was entered.
          */
         void onInput(String text);
