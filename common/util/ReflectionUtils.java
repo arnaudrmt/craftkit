@@ -1,6 +1,8 @@
 package fr.arnaud.craftkit.util;
 
 import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
 
 import java.lang.reflect.*;
 
@@ -12,16 +14,22 @@ import java.lang.reflect.*;
  */
 public final class ReflectionUtils {
 
+    // Cache the version string to improve performance
+    private static final String VERSION = Bukkit.getServer().getClass().getPackage().getName().split("\\.")[3];
+
     /**
      * Gets a net.minecraft.server (NMS) class for the current server version.
-     *
-     * @param name Simple class name (e.g. "PacketPlayOutBlockChange")
+     * @param name Simple class name (e.g. "PacketPlayOutBlockChange") for 1.16-, or full path for 1.17+
      * @return The corresponding Class object
      */
     public static Class<?> getNMSClass(String name) {
-        String version = getServerVersion();
         try {
-            return Class.forName("net.minecraft.server." + version + "." + name);
+            // If the name contains a dot, treat it as a full path (1.17+ support)
+            if (name.contains(".")) {
+                return Class.forName(name);
+            }
+            // Legacy support (1.8 - 1.16.5)
+            return Class.forName("net.minecraft.server." + VERSION + "." + name);
         } catch (ClassNotFoundException e) {
             throw new RuntimeException("NMS class not found: " + name, e);
         }
@@ -30,13 +38,12 @@ public final class ReflectionUtils {
     /**
      * Gets a CraftBukkit class for the current server version.
      *
-     * @param name Simple class name (e.g. "CraftWorld")
+     * @param name Simple class name (e.g. "CraftWorld" or "entity.CraftPlayer")
      * @return The corresponding Class object
      */
     public static Class<?> getCraftClass(String name) {
-        String version = getServerVersion();
         try {
-            return Class.forName("org.bukkit.craftbukkit." + version + "." + name);
+            return Class.forName("org.bukkit.craftbukkit." + VERSION + "." + name);
         } catch (ClassNotFoundException e) {
             throw new RuntimeException("CraftBukkit class not found: " + name, e);
         }
@@ -48,8 +55,7 @@ public final class ReflectionUtils {
      * @return Version string used in NMS/CraftBukkit packages
      */
     public static String getServerVersion() {
-        String packageName = Bukkit.getServer().getClass().getPackage().getName();
-        return packageName.substring(packageName.lastIndexOf('.') + 1);
+        return VERSION;
     }
 
     /**
@@ -145,6 +151,39 @@ public final class ReflectionUtils {
             return field.get(null);
         } catch (Exception e) {
             throw new RuntimeException("Error reading static field " + fieldName + " from " + clazz.getName(), e);
+        }
+    }
+
+    /**
+     * Gets the NMS handle (EntityPlayer/ServerPlayer) from a Bukkit Player.
+     *
+     * @param player The Bukkit Player instance.
+     * @return The NMS player object.
+     */
+    public static Object getHandle(Player player) {
+        try {
+            Method getHandle = player.getClass().getMethod("getHandle");
+            getHandle.setAccessible(true);
+            return getHandle.invoke(player);
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to get NMS handle from player", e);
+        }
+    }
+
+    /**
+     * Converts a Bukkit ItemStack to an NMS ItemStack (copy).
+     *
+     * @param item The Bukkit ItemStack.
+     * @return The NMS ItemStack object.
+     */
+    public static Object asNMSCopy(ItemStack item) {
+        try {
+            Class<?> craftItemStack = getCraftClass("inventory.CraftItemStack");
+            Method asNMSCopy = craftItemStack.getMethod("asNMSCopy", ItemStack.class);
+            asNMSCopy.setAccessible(true);
+            return asNMSCopy.invoke(null, item);
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to convert ItemStack to NMS", e);
         }
     }
 }
