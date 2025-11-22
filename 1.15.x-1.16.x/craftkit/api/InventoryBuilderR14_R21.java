@@ -129,6 +129,7 @@ public abstract class InventoryBuilder implements Listener {
     public void reset() {
         inventories.remove(player);
         animations.forEach(BukkitTask::cancel);
+        HandlerList.unregisterAll(this);
     }
 
     public Inventory getInventory(Player player) {
